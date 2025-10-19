@@ -2,7 +2,7 @@ import pandas as pd
 from missing_values_cleaner import missing_values_cleaner
 from quantity_handler import quantity_handler
 from amount_spent_computer import amount_spent_computer
-#from date_handler import date_handler
+from date_handler import date_handler
 
 #It's not calling date_handler properly, I have no Idea why this does not work
 
@@ -26,7 +26,7 @@ def data_cleaner(df) -> pd.DataFrame:
     clean = quantity_handler(clean )
 
     clean = amount_spent_computer(clean)
-    #clean = date_handler(clean)
+    clean = date_handler(clean)
 
     return clean
     
