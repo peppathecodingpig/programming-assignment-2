@@ -4,5 +4,6 @@ def quantity_handler(df) -> pd.DataFrame:
     
     df = df.copy()
     
-    # Your code goes here
-    pass
+    df =  df[df["Quantity"]>0]
+
+    return df 
