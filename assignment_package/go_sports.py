@@ -1,17 +1,19 @@
 import pandas as pd
 
 def go_sports(teams, managers) -> pd.DataFrame:
-
-    managers['managerID'] = managers['managerID'].str.replace(' ', '', regex=False)
-
-    teams_columns = teams.loc[:,["teamID","name","W","L","yearID"]]
-
     
-    managers_columns = managers.loc[:,["teamID","managerID","yearID"]]
+    teams['yearID'] = teams['yearID'].astype(str).str[:4].astype(int)
+    
+    managers['yearID'] = managers['yearID'].astype(str).str[:4].astype(int)
+    
+    teams_columns= teams.loc[:,["name","teamID","W","L", "yearID"]]
+    
+    managers_columns= managers.loc[:,["teamID", "managerID", "yearID"]]
    
-
-    
-    merged = pd.merge(teams_columns, managers_columns,on="teamID", how = "inner")
+    merged_df= pd.merge(teams_columns ,  managers_columns, on=["teamID","yearID"], how="inner")
     
 
-    return merged
+    result = merged_df[["name", "managerID", "yearID", "W", "L"]]
+
+   
+    return result
